@@ -1,0 +1,23 @@
+# Here’s a simple Python script that checks a connection and sends an alert if it fails: 
+# import requests 
+# import time 
+ 
+URL = "http://example.com" 
+CHECK_INTERVAL = 10  # seconds 
+  
+def check_connection(): 
+    try: 
+        response = requests.get(URL, timeout=5) 
+        if response.status_code == 200: 
+            print("Connection is up") 
+        else: 
+            alert("Connection issue detected!") 
+    except requests.exceptions.RequestException: 
+        alert("Connection lost!") 
+  
+def alert(message): 
+    print(f"ALERT: {message}")  # Replace with email/SMS/webhook 
+  
+while True: 
+    check_connection() 
+    time.sleep(CHECK_INTERVAL) 
